@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+
+}
+.container{
+    width: 1200px;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+.header-left{
+    width: 300px;
+    height: 300px;
+
+}
+
+.header-right{
+    width: 100%;
+    height: 300px;
+}
+
+.header-right .profile{
+    margin-top: 20px;
+    background-color: gray;
+    color: black;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.header-right h1 {
+    width: 50px;
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.header-right h2 {
+    font-size: 30px;
+}
+
+
+.mainbody {
+    display: flex;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    padding: 20px;
+    line-height: 20px;
+}
+
+.highlight-name{
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    line-height: 25px;
+}
+
+.mainbody-left {
+    width: 600px;
+    margin: 40px;
+}
+
+.mainbody-left h2{
+    font-size: 30px;
+    color: gray;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.mainbody-right {
+    width: 600px;
+}
+
+.mainbody-left__box-detail  {
+    margin-bottom: 20px;
+
+}
+
+.mainbody-left__box-detail .time,  .mainbody-left__box-detail ul, .mainbody-left__box-detail li{
+    margin: 5px;
+    right: 10px;
+}
+
+.mainbody-left__box-detail .time{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.mainbody-right__all-box .box-skill {
+  background-color: gray;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.mainbody-right__all-box .box-refer {
+    background-color: gray;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mainbody-right__all-box .box-language{
+    background-color: gray;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
