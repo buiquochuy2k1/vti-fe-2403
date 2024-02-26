@@ -28,7 +28,7 @@ console.log("New Arr", newArr)
 console.log(squaredNumbers)
 
 
-// 3. Filter Filters elements based on a condition and returns new array 
+// 3. Filter: Filters elements based on a condition and returns new array 
 
 
 output: [1, 3, 5];
