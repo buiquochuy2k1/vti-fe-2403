@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Dancing+Script|Itim|Lobster|Montserrat:500|Noto+Serif|Nunito|Patrick+Hand|Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i|Roboto+Slab|Saira"
+      rel="stylesheet"
+    />
+
+    <!-- CSS BASE -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Animation Css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <title>Login Form</title>
+  </head>
+  <body>
+    <!-- header  -->
+    <header class="header">
+      <nav class="nav">
+        <a href="" class="nav_logo animate__animated animate__fadeInDown"
+          >Bùi Quốc Huy</a
+        >
+
+        <ul class="nav_items">
+          <li class="nav_item animate__animated animate__fadeInDown">
+            <a href="" class="nav_link">Trang chủ</a>
+            <a href="" class="nav_link">Sản phẩm</a>
+            <a href="" class="nav_link">Thông tin</a>
+            <a href="" class="nav_link">Liên hệ</a>
+          </li>
+        </ul>
+
+        <button
+          class="button animate__animated animate__fadeInDown"
+          id="form-open"
+        >
+          Login
+        </button>
+      </nav>
+    </header>
+
+    <!-- home  -->
+
+    <section class="home">
+      <div class="form_container">
+        <i class="bx bxs-x-square form_closed"></i>
+        <!-- LOGIN FORM  -->
+        <div class="form login_form">
+          <form action="#">
+            <h2>Login</h2>
+
+            <div class="input_box">
+              <i class="bx bx-envelope-open email"></i>
+              <input type="email" placeholder="Nhập email của bạn" required />
+            </div>
+
+            <div class="input_box">
+              <i class="bx bxs-lock-alt password"></i>
+              <i class="bx bx-low-vision pw_hide"></i>
+              <input
+                type="password"
+                placeholder="Nhập mật khẩu của bạn"
+                required
+              />
+            </div>
+
+            <div class="option_field">
+              <span class="checkbox">
+                <input type="checkbox" class="check" />
+                <label for="check">Lưu mật khẩu</label>
+              </span>
+              <a href="#" class="forgot_pw">Quên mật khẩu</a>
+            </div>
+
+            <button class="button">Đăng Nhập</button>
+            <div class="login_signup">
+              Bạn chưa có tài khoản ? <a href="#" id="signup">Đăng ký</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- END LOGIN FORM -->
+
+        <!-- SIGNUP FORM  -->
+        <div class="form signup_form">
+          <form action="#">
+            <h2>Sign Up</h2>
+
+            <div class="input_box">
+              <i class="bx bx-envelope-open email"></i>
+              <input type="email" placeholder="Nhập email của bạn" required />
+            </div>
+
+            <div class="input_box">
+              <i class="bx bxs-lock-alt password"></i>
+              <i class="bx bx-low-vision pw_hide"></i>
+              <input
+                type="password"
+                placeholder="Tạo mật khẩu của bạn"
+                required
+              />
+            </div>
+
+            <div class="input_box">
+              <i class="bx bxs-lock-alt password"></i>
+              <i class="bx bx-low-vision pw_hide"></i>
+              <input
+                type="password"
+                placeholder="Xác nhận mật khẩu của bạn"
+                required
+              />
+            </div>
+
+            <button class="button">Đăng Ký Ngay</button>
+            <div class="login_signup">
+              Bạn đã có tài khoản ? <a href="#" id="login">Đăng nhập</a>
+            </div>
+          </form>
+        </div>
+        <!-- END SIGNUP FORM  -->
+      </div>
+    </section>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
