@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Animation Css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- CSS BASE -->
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Todo List Web App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="todo-app">
+        <h2>
+          TO DO LIST <img src="img/icon.png" alt="" srcset="" />
+          <button class="buttonremoveall" onclick="deleteAllTask()">
+            XOÁ TẤT CẢ
+          </button>
+        </h2>
+        <div class="row">
+          <input type="text" id="input-box" placeholder="Bạn muốn thêm gì ?" />
+          <button class="buttontodoapp" onclick="addTask()">
+            Thêm nhiệm vụ
+          </button>
+        </div>
+        <ul id="list-container">
+          <!-- <li class="checked">Task 1</li>
+          <li>Task 2</li>
+          <li>Task 3</li> -->
+        </ul>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
