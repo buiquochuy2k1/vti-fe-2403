@@ -63,4 +63,14 @@ function RunPromise() {
   });
 }
 
-RunPromise();
+// RunPromise();
+
+const getUserList = async () => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/users");
+  const userList = response.json();
+  return userList;
+};
+
+getUserList().then((data) => {
+  console.log(data);
+});
