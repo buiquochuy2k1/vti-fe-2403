@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS BASE -->
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="OpenProductForm()">Create Product</button>
+    <div class="product-form">
+      <form onsubmit="return handleAdd()">
+        <div>
+          Name:
+          <input required id="name" placeholder="Enter your name" type="text" />
+        </div>
+        <div>
+          Type:
+          <input required id="type" placeholder="Enter type" type="text" />
+        </div>
+        <div>
+          Price:
+          <input required id="price" placeholder="Enter price" type="number" />
+        </div>
+        <div>
+          Image:
+          <input required id="img" placeholder="Enter img link" type="text" />
+        </div>
+        <div class="product-form-actions">
+          <input type="submit" value="Submit" />
+          <button type="button" onclick="CancleAdd()">Cancel</button>
+        </div>
+      </form>
+    </div>
+    <div class="product-list-container"></div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
