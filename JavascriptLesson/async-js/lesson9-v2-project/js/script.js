@@ -109,6 +109,22 @@ function ReloadPage() {
   alert('Reload page thành công');
   location.reload();
 }
+
+function MainPage() {
+  sidebarHTML.innerHTML = '<h1><strong>Loading.</strong></h1>';
+  setTimeout(() => {
+    setTimeout(() => {
+      sidebarHTML.innerHTML = '<h1><strong>Loading..</strong></h1>';
+      setTimeout(() => {
+        setTimeout(() => {
+          sidebarHTML.innerHTML = '<h1><strong>Please Select Data To View</strong></h1>';
+        }, 1600);
+        sidebarHTML.innerHTML = '<h1><strong>Loading...</strong></h1>';
+      }, 1400);
+    }, 1200);
+    sidebarHTML.innerHTML = '<h1><strong>Loading.</strong></h1>';
+  }, 200);
+}
 // -------------------------------------------------------------------------------\\
 // TẠO DỮ LIỆU CARD DATA
 function generatePostCard(item, index) {
