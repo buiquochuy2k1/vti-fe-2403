@@ -25,11 +25,41 @@
   <body>
     <div class="container">
       <div class="main-content">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus ex, nihil totam incidunt et, in qui excepturi, sit fuga eius quos!
+        <button class="main-content__button" onclick="GetPostData()">
+          DATA POST
+        </button>
+        <button class="main-content__button" onclick="GetCommentData()">
+          DATA COMMENT
+        </button>
+        <button class="main-content__button" onclick="GetPhotoData()">
+          DATA PHOTO
+        </button>
+        <button class="main-content__button" onclick="GetTodoData()">
+          DATA TODO
+        </button>
+        <button class="main-content__button" onclick="GetUserData()">
+        DATA USER
+        </button>
+        <button class="main-content__button" onclick="ReloadPage()">
+          RELOAD PAGE
+          </button>
       </div>
-      <div class="sidebar">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae quos suscipit quisquam. Sed, suscipit cum praesentium at eius veniam, dolorem doloribus, vitae impedit ad assumenda laboriosam officiis facere porro perferendis.
+      <div class="sidebar"></div>
+        <div id="myModal" class="modal">
+          <div class="modal-content animate__animated animate__zoomIn">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+              <!-- <h2>Modal Header</h2> -->
+            </div>
+            <div class="modal-body">
+              <!-- <p>Modal Content</p> -->
+            </div>
+            <div class="modal-footer">
+              <a class="buttonViewDetail" onclick='logModalDetail()'><span class="buttonViewDetailspan">Log Data</span></a>
+              <a class="buttonClose" onclick='closeModal()'><span class="buttonClosespan">Close</span></a>
+            </div>
+          </div>
       </div>
-    <!-- <script src="js/script.js"></script> -->
+    <script src="js/script.js"></script>
   </body>
 </html>

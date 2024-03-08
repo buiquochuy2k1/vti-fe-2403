@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .container {
@@ -14,14 +14,183 @@
 }
 
 .main-content {
-  background-color: aqua;
+  background-color: #9195f6;
   min-width: 150px;
   flex: 1;
   border: 1.5px solid black;
 }
 
 .sidebar {
-  background-color: yellow;
+  background-color: #b7c9f2;
   min-width: 300px;
   flex: 5;
+  padding: 10px;
+}
+
+.main-content__button__card__item {
+  background-color: #f9f07a;
+  color: black;
+  border-radius: 15px;
+  width: 400px;
+  height: 300px;
+  box-shadow: 0px 0px 55px -9px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 55px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 55px -9px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.main-content__button__card {
+  display: flex;
+  gap: 10px 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-content__button {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #f9f07a;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset, rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all 0.2s, box-shadow 0.08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.main-content__button:disabled {
+  cursor: default;
+}
+
+.main-content__button:focus {
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset, rgba(50, 50, 93, 0.2) 0 6px 15px 0, rgba(0, 0, 0, 0.1) 0 2px 2px 0, rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
+
+/*  LÀM BUTTON VIEW DETAIL */
+.buttonViewDetail {
+  background-image: linear-gradient(135deg, #008aff, #86d472);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: inline-block;
+  height: 40px;
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 4px;
+  position: relative;
+  text-decoration: none;
+  width: 7em;
+  z-index: 2;
+}
+
+.buttonViewDetail:hover {
+  color: #fff;
+}
+
+.buttonViewDetail .buttonViewDetailspan {
+  align-items: center;
+  background: #0e0e10;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+
+.buttonViewDetail:hover .buttonViewDetailspan {
+  background: transparent;
+}
+
+/* LÀM BUTTON CLOSE ( ĐÓNG ) */
+.buttonClose {
+  background-image: linear-gradient(135deg, #ff0000, #86d472);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: inline-block;
+  height: 40px;
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 4px;
+  position: relative;
+  text-decoration: none;
+  width: 7em;
+  z-index: 2;
+}
+
+.buttonClose:hover {
+  color: #fff;
+}
+
+.buttonClose .buttonClosespan {
+  align-items: center;
+  background: #0e0e10;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  transition: background 0.5s ease;
+  width: 100%;
+}
+
+.buttonClose:hover .buttonClosespan {
+  background: transparent;
+}
+
+/* MODAL  */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
