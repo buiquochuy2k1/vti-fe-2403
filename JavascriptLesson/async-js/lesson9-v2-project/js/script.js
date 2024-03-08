@@ -46,7 +46,7 @@ const getAllUsersAPI = async () => {
 // -----------------------------------------------------------------------------\\
 //NHẬN DỮ LIỆU TỪ CÁC NÚT BẤM
 function GetPostData() {
-  sidebarHTML.innerHTML = '<h1><strong>Loading</strong></h1>';
+  sidebarHTML.innerHTML = '<h1><strong>Loading...</strong></h1>';
 
   getAllPostAPI()
     .then((dataAPI) => {
@@ -58,7 +58,7 @@ function GetPostData() {
     });
 }
 function GetCommentData() {
-  sidebarHTML.innerHTML = '<h1><strong>Loading</strong></h1>';
+  sidebarHTML.innerHTML = '<h1><strong>Loading...</strong></h1>';
 
   getAllCommentAPI()
     .then((dataAPI) => {
@@ -70,7 +70,7 @@ function GetCommentData() {
     });
 }
 function GetPhotoData() {
-  sidebarHTML.innerHTML = '<h1><strong>Loading</strong></h1>';
+  sidebarHTML.innerHTML = '<h1><strong>Loading...</strong></h1>';
 
   getAllPhotoAPI()
     .then((dataAPI) => {
@@ -82,7 +82,7 @@ function GetPhotoData() {
     });
 }
 function GetTodoData() {
-  sidebarHTML.innerHTML = '<h1><strong>Loading</strong></h1>';
+  sidebarHTML.innerHTML = '<h1><strong>Loading...</strong></h1>';
 
   getAllTodoAPI()
     .then((dataAPI) => {
@@ -94,7 +94,7 @@ function GetTodoData() {
     });
 }
 function GetUserData() {
-  sidebarHTML.innerHTML = '<h1><strong>Loading</strong></h1>';
+  sidebarHTML.innerHTML = '<h1><strong>Loading...</strong></h1>';
 
   getAllUsersAPI()
     .then((dataAPI) => {
@@ -130,6 +130,7 @@ function generateCommentCard(item, index) {
       <p><strong>Name</strong>: ${item.name}</p>
       <p><strong>Email</strong>: ${item.email}</p>
       <p><strong>Body</strong>: ${item.body}</p>
+      <a class="buttonViewDetail" onclick='GetCommentCardDetail(${JSON.stringify(item)})'><span class="buttonViewDetailspan">View Detail</span></a>
     </div>
     `;
 }
@@ -142,6 +143,7 @@ function generatePhotoCard(item, index) {
       <p><strong>Title</strong>: ${item.title}</p>
       <p><strong>URL</strong>: ${item.url}</p>
       <p><strong>Thumbnail URL</strong>: ${item.thumbnailUrl}</p>
+      <a class="buttonViewDetail" onclick='GetPhotoCardDetail(${JSON.stringify(item)})'><span class="buttonViewDetailspan">View Detail</span></a>
     </div>
     `;
 }
@@ -153,6 +155,7 @@ function generateTodoCard(item, index) {
       <p><strong>ID</strong>: ${item.id}</p>
       <p><strong>Title</strong>: ${item.title}</p>
       <p><strong>Status</strong>: ${item.completed ? 'Done' : 'Not Done'}</p>
+      <a class="buttonViewDetail" onclick='GetTodoCardDetail(${JSON.stringify(item)})'><span class="buttonViewDetailspan">View Detail</span></a>
     </div>
     `;
 }
@@ -164,6 +167,8 @@ function generateUserCard(item, index) {
       <p><strong>Username</strong>: ${item.username}</p>
       <p><strong>Email</strong>: ${item.email}</p>
       <p><strong>Phone</strong>: ${item.phone}</p>
+      <a class="buttonViewDetail" onclick='GetUserCardDetail(${JSON.stringify(item)})'><span class="buttonViewDetailspan">View Detail</span></a>
+
     </div>
     `;
 }
@@ -201,19 +206,108 @@ function CreateUserCardList(dataUser) {
 // --------------------------------------------------------------------------------\\
 // TẠO CÁC FUNTION NÚT BẤM KHI NGƯỜI DÙNG NHẤN VÀO VIEW DETAIL
 
-function GetPostCardDetail(PostCardDetail) {
+function GetPostCardDetail(postCardDetail) {
   document.getElementById('myModal').style.display = 'block';
 
-  modalHeader.innerHTML = `<h2><strong>Data</strong> User ID</strong>: ${PostCardDetail.userId}</h2>`;
+  modalHeader.innerHTML = `<h2><strong>Data</strong> User ID</strong>: ${postCardDetail.userId}</h2>`;
 
   modalBody.innerHTML = `
   <div class="modal-content_text">
-    <p><strong>ID</strong>: ${PostCardDetail.id}</p>
-    <p><strong>Title</strong>: ${PostCardDetail.title}</p>
-    <p><strong>Body</strong>: ${PostCardDetail.body}</p>
+    <p><strong>ID</strong>: ${postCardDetail.id}</p>
+    <p><strong>Title</strong>: ${postCardDetail.title}</p>
+    <p><strong>Body</strong>: ${postCardDetail.body}</p>
+    <a class="buttonViewDetail" onclick='logModalDetail(${JSON.stringify(postCardDetail)})'><span class="buttonViewDetailspan">Log Data</span></a>
+    <a class="buttonClose" onclick='closeModal()'><span class="buttonClosespan">Close</span></a>
   </div>`;
 }
 
+function GetCommentCardDetail(commentCardDetail) {
+  document.getElementById('myModal').style.display = 'block';
+
+  modalHeader.innerHTML = `<h2><strong>Data</strong>Post ID</strong>: ${commentCardDetail.postId}</h2>`;
+
+  modalBody.innerHTML = `
+  <div class="modal-content_text">
+    <p><strong>Name</strong>: ${commentCardDetail.name}</p>
+    <p><strong>Email</strong>: ${commentCardDetail.email}</p>
+    <p><strong>Body</strong>: ${commentCardDetail.body}</p>
+    <a class="buttonViewDetail" onclick='logModalDetail(${JSON.stringify(commentCardDetail)})'><span class="buttonViewDetailspan">Log Data</span></a>
+    <a class="buttonClose" onclick='closeModal()'><span class="buttonClosespan">Close</span></a>
+  </div>`;
+}
+
+function GetPhotoCardDetail(photoCardDetail) {
+  document.getElementById('myModal').style.display = 'block';
+
+  modalHeader.innerHTML = `<h2><strong>Data</strong>Album ID</strong>: ${photoCardDetail.albumId}</h2>`;
+
+  modalBody.innerHTML = `
+  <div class="modal-content_text">
+    <p><strong>ID</strong>: ${photoCardDetail.id}</p>
+    <p><strong>Title</strong>: ${photoCardDetail.title}</p>
+    <p><strong>URL</strong>: ${photoCardDetail.url}</p>
+    <p><strong>Thumbnail URL</strong>: ${photoCardDetail.thumbnailUrl}</p>
+    <a class="buttonViewDetail" onclick='logModalDetail(${JSON.stringify(photoCardDetail)})'><span class="buttonViewDetailspan">Log Data</span></a>
+    <a class="buttonClose" onclick='closeModal()'><span class="buttonClosespan">Close</span></a>
+  </div>`;
+}
+
+function GetTodoCardDetail(TodoCardDetail) {
+  document.getElementById('myModal').style.display = 'block';
+
+  modalHeader.innerHTML = `<h2><strong>Data</strong>User ID</strong>: ${TodoCardDetail.userId}</h2>`;
+
+  modalBody.innerHTML = `
+  <div class="modal-content_text">
+    <p><strong>ID</strong>: ${TodoCardDetail.id}</p>
+    <p><strong>Title</strong>: ${TodoCardDetail.title}</p>
+    <p><strong>Status</strong>: ${TodoCardDetail.completed ? 'Done' : 'Not Done'}</p>
+    <a class="buttonViewDetail" onclick='logModalDetail(${JSON.stringify(TodoCardDetail)})'><span class="buttonViewDetailspan">Log Data</span></a>
+    <a class="buttonClose" onclick='closeModal()'><span class="buttonClosespan">Close</span></a>
+  </div>
+
+  `;
+}
+
+function GetUserCardDetail(UserCardDetail) {
+  document.getElementById('myModal').style.display = 'block';
+
+  modalHeader.innerHTML = `<h2><strong>Data</strong>User ID</strong>: ${UserCardDetail.id}</h2>`;
+
+  modalBody.innerHTML = `
+  <div class="modal-content_text">
+    <p><strong>Name</strong>: ${UserCardDetail.name}</p>
+    <p><strong>Username</strong>: ${UserCardDetail.username}</p>
+    <p><strong>Email</strong>: ${UserCardDetail.email}</p>
+    <p><strong>Phone</strong>: ${UserCardDetail.phone}</p>
+    <P><strong>Website</strong>: ${UserCardDetail.website}</p>
+    <ul><strong>---------Address----------<//strong>
+      <li><strong>Street</strong>: ${UserCardDetail.address.street}</li>
+      <li><strong>Suite</strong>: ${UserCardDetail.address.suite}</li>
+      <li><strong>City</strong>: ${UserCardDetail.address.city}</li>
+      <li><strong>Zipcode</strong>: ${UserCardDetail.address.zipcode}</li>
+    </ul>
+    <P></p>
+    <ul><strong>---------Company----------</strong>
+      <li><strong>Company Name</strong>: ${UserCardDetail.company.name}</li>
+      <li><strong>Company Catch Phrase</strong>: ${UserCardDetail.company.catchPhrase}</li>
+      <li><strong>Company BS</strong>: ${UserCardDetail.company.bs}</li>
+    </ul>
+
+    <a class="buttonViewDetail" onclick='logModalDetail(${JSON.stringify(UserCardDetail)})'><span class="buttonViewDetailspan">Log Data</span></a>
+    <a class="buttonClose" onclick='closeModal()'><span class="buttonClosespan">Close</span></a>
+  </div>`;
+}
+
+function logModalDetail(data) {
+  alert('Đã xuất thông tin, vào F12 > Console để xem');
+  console.log('------------DỮ LIỆU ĐÃ XUẤT-----------------');
+  console.log(data);
+  console.log('--------------------------------------------');
+  closeModal();
+}
+// --------------------------------------------------------------------------------------------\\
+// FUNCTION ĐỂ ĐÓNG MODAL
 function closeModal() {
   document.getElementById('myModal').style.display = 'none';
 }

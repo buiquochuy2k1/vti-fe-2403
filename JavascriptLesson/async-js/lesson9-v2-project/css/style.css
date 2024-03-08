@@ -17,7 +17,9 @@
   background-color: #9195f6;
   min-width: 150px;
   flex: 1;
-  border: 1.5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sidebar {
@@ -74,7 +76,7 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 100%;
+  width: 50%;
 }
 
 .main-content__button:disabled {
