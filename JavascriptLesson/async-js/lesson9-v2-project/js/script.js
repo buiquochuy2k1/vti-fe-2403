@@ -157,7 +157,7 @@ function generatePhotoCard(item, index) {
       <h2><strong>Album ID</strong>: ${item.albumId}</h2>
       <p><strong>ID</strong>: ${item.id}</p>
       <p><strong>Title</strong>: ${item.title}</p>
-      <p><strong>URL</strong>: ${item.url}</p>
+      <img src="${item.url}" alt="" srcset="">
       <p><strong>Thumbnail URL</strong>: ${item.thumbnailUrl}</p>
       <a class="buttonViewDetail" onclick='GetPhotoCardDetail(${JSON.stringify(item)})'><span class="buttonViewDetailspan">View Detail</span></a>
     </div>

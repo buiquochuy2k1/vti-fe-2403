@@ -42,6 +42,10 @@
   padding: 20px;
 }
 
+.main-content__button__card__item img {
+  width: 100px;
+  height: 100px;
+}
 .main-content__button__card {
   display: flex;
   gap: 10px 10px;
@@ -89,6 +93,7 @@
 
 /*  LÀM BUTTON VIEW DETAIL */
 .buttonViewDetail {
+  cursor: pointer;
   background-image: linear-gradient(135deg, #008aff, #86d472);
   border-radius: 6px;
   box-sizing: border-box;
@@ -125,6 +130,7 @@
 
 /* LÀM BUTTON CLOSE ( ĐÓNG ) */
 .buttonClose {
+  cursor: pointer;
   background-image: linear-gradient(135deg, #ff0000, #86d472);
   border-radius: 6px;
   box-sizing: border-box;
