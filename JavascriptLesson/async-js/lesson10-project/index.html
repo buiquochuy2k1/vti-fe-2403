@@ -24,22 +24,28 @@
         <span class="text">BUI QUOC HUY</span>
       </a>
       <ul class="side-menu top">
-        <li class="active">
-          <a href="#">
+        <li class="active" >
+          <a onclick="getHomePage()" >
             <i class="bx bxs-dashboard"></i>
-            <span class="text">GET API 1</span>
+            <span class="text">Home</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a onclick="getUsers()" style="cursor: pointer;">
+            <i class="bx bxs-dashboard"></i>
+            <span class="text">Users</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="getProducts()" style="cursor: pointer;">
             <i class="bx bxs-shopping-bag-alt"></i>
-            <span class="text">GET API 2</span>
+            <span class="text">Products</span>
           </a>
         </li>
       </ul>
       <ul class="side-menu">
         <li>
-          <a href="#" class="logout">
+          <a onclick="reloadPage()" style="cursor: pointer;" class="logout">
             <i class="bx bxs-log-out-circle"></i>
             <span class="text">Reload</span>
           </a>
@@ -76,71 +82,40 @@
       <main>
         <div class="head-title">
           <div class="left">
-            <h1>Dashboard</h1>
+            <h1>API</h1>
             <ul class="breadcrumb">
               <li>
-                <a href="#">Dashboard</a>
+                <a href="#">API</a>
               </li>
               <li><i class="bx bx-chevron-right"></i></li>
               <li>
-                <a class="active" href="#">Home</a>
+                <a class="active" href="#">Data</a>
               </li>
             </ul>
           </div>
+          <a onclick="createData('users')" class="btn-download" style="cursor: pointer;">
+            <i class='bx bxs-comment-add'></i>
+            <span class="text">Create User</span>
+          </a>
+          <a onclick="openDeleteData()" class="btn-delete" style="cursor: pointer;">
+            <i class='bx bxs-message-square-x'></i>
+            <span class="text">Delete Data</span>
+          </a>
+          <a onclick="createData('products')" class="btn-download" style="cursor: pointer;">
+            <i class='bx bxs-comment-add'></i>
+            <span class="text">Create Product</span>
+          </a>
         </div>
 
         <div class="content-data-box">
-          <div class="content-card-list">  
+          <!-- <div class="content-card-list">  
             <div class="content-card-item">
               <h2><strong>ID</strong>: 1</h2>
               <p><strong>Username</strong>: Misaki</p>
               <p><strong>Email</strong>: annonymous@gmail.com</p>
               <p><strong>Phone</strong>: 123-456-789</p>        
             </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            <div class="content-card-item">
-              <h2><strong>ID</strong>: 1</h2>
-              <p><strong>Username</strong>: Misaki</p>
-              <p><strong>Email</strong>: annonymous@gmail.com</p>
-              <p><strong>Phone</strong>: 123-456-789</p>        
-            </div>
-            
-          </div>
+          </div> -->
         </div>
 
         </div>
@@ -148,7 +123,46 @@
       <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+    <div id="myModalDelete" class="modalDelete">
+      <div class="modalDelete-content animate__animated animate__zoomIn">
+        <span class="closeModalDelete" onclick="closeModalDelete()">&times;</span>
+        <div class="modalDelete-header">
+        </div>
+        <div class="modalDelete-body">
+        </div>
+        <div class="modalDelete-footer">
+        </div>
+      </div>
+  </div>
 
-    <script src="js/script.js"></script>
+    <div id="myModalCreate" class="modalCreate">
+      <div class="modalCreate-content animate__animated animate__zoomIn">
+        <span class="closeModalCreate" onclick="closeModalCreate()">&times;</span>
+        <div class="modalCreate-header">
+        </div>
+        <div class="modalCreate-body">
+          
+        </div>
+        <div class="modalCreate-footer">
+        </div>
+      </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content animate__animated animate__zoomIn">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-header">
+        <!-- <h2>Modal Header</h2> -->
+      </div>
+      <div class="modal-body">
+        <!-- <p>Modal Content</p> -->
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+</div>
+    <script src="js/mainScript.js"></script>
+    <script src="js/createData.js"></script>
+    <script src="js/deleteData.js"></script>
   </body>
 </html>

@@ -1,31 +1,31 @@
 // -----------------------------KHAI BÁO---------------------
 const getPostList = async () => {
-  let response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  let response = await fetch('https://jsonplaceholder.typicode.com/posts');
   return response.json();
 };
 
 const getCommentList = async () => {
-  let response = await fetch("https://jsonplaceholder.typicode.com/comments");
+  let response = await fetch('https://jsonplaceholder.typicode.com/comments');
   return response.json();
 };
 
 const getAlbumList = async () => {
-  let response = await fetch("https://jsonplaceholder.typicode.com/albums");
+  let response = await fetch('https://jsonplaceholder.typicode.com/albums');
   return response.json();
 };
 
 const getPhotoList = async () => {
-  let response = await fetch("https://jsonplaceholder.typicode.com/photos");
+  let response = await fetch('https://jsonplaceholder.typicode.com/photos');
   return response.json();
 };
 
 const getToDoList = async () => {
-  let response = await fetch("https://jsonplaceholder.typicode.com/todos");
+  let response = await fetch('https://jsonplaceholder.typicode.com/todos');
   return response.json();
 };
 
 const getUserList = async () => {
-  let response = await fetch("https://jsonplaceholder.typicode.com/users");
+  let response = await fetch('https://jsonplaceholder.typicode.com/users');
   return response.json();
 };
 
@@ -36,7 +36,7 @@ getPostList()
     console.log(`/post ${data.length}`);
   })
   .catch((err) => {
-    console.log("Đã xảy ra lỗi, vui lòng thử lại sau", err);
+    console.log('Đã xảy ra lỗi, vui lòng thử lại sau', err);
   });
 
 getCommentList()
@@ -44,7 +44,7 @@ getCommentList()
     console.log(`/comments ${data.length}`);
   })
   .catch((err) => {
-    console.log("Đã xảy ra lỗi, vui lòng thử lại sau", err);
+    console.log('Đã xảy ra lỗi, vui lòng thử lại sau', err);
   });
 
 getAlbumList()
@@ -52,7 +52,7 @@ getAlbumList()
     console.log(`/albums ${data.length}`);
   })
   .catch((err) => {
-    console.log("Đã xảy ra lỗi, vui lòng thử lại sau", err);
+    console.log('Đã xảy ra lỗi, vui lòng thử lại sau', err);
   });
 
 getPhotoList()
@@ -60,7 +60,7 @@ getPhotoList()
     console.log(`/photos ${data.length}`);
   })
   .catch((err) => {
-    console.log("Đã xảy ra lỗi, vui lòng thử lại sau", err);
+    console.log('Đã xảy ra lỗi, vui lòng thử lại sau', err);
   });
 
 getToDoList()
@@ -68,7 +68,7 @@ getToDoList()
     console.log(`/todos ${data.length}`);
   })
   .catch((err) => {
-    console.log("Đã xảy ra lỗi, vui lòng thử lại sau", err);
+    console.log('Đã xảy ra lỗi, vui lòng thử lại sau', err);
   });
 
 getUserList()
@@ -76,18 +76,11 @@ getUserList()
     console.log(`/users ${data.length}`);
   })
   .catch((err) => {
-    console.log("Đã xảy ra lỗi, vui lòng thử lại sau", err);
+    console.log('Đã xảy ra lỗi, vui lòng thử lại sau', err);
   });
 
 //------------------------TEST---------------\\
-Promise.all([
-  getPostList(),
-  getCommentList(),
-  getAlbumList(),
-  getPhotoList(),
-  getToDoList(),
-  getUserList(),
-]).then((data) => {
+Promise.all([getPostList(), getCommentList(), getAlbumList(), getPhotoList(), getToDoList(), getUserList()]).then((data) => {
   console.log(data.length);
 });
 
