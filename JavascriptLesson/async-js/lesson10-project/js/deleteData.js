@@ -18,24 +18,36 @@ function openDeleteData() {
 }
 
 function deleteData() {
-  var inputIdValue = document.getElementById('typeInput').value.trim().toLowerCase();
+  var inputIdValue = document.getElementById('typeInput').value;
   var typeID = document.getElementById('typeID').value;
 
-  if (inputIdValue !== 'products' && inputIdValue !== 'users') {
+  if (inputIdValue.toLowerCase() !== 'products' && inputIdValue.toLowerCase() !== 'users') {
     alert('Only type "products" or "users"');
     return;
   }
 
-  deleteDataAPI(inputIdValue, typeID);
+  deleteDataAPI(inputIdValue, typeID).catch((err) => {
+    console.log('Lỗi ', err);
+  });
 }
 
 const deleteDataAPI = async (typeValue, typeID) => {
-  const response = await fetch(`${BASE_API_LINK}/${typeValue}/${typeID}`, {
-    method: 'DELETE',
-  });
-  alert(`Đã xoá ID: ${typeID} từ ${typeValue}`);
-  closeModalDelete();
-  return response.ok;
+  try {
+    const response = await fetch(`${BASE_API_LINK}/${typeValue}/${typeID}`, {
+      method: 'DELETE',
+    });
+
+    if (response.ok) {
+      alert(`Đã xoá ID: ${typeID} từ ${typeValue}`);
+      closeModalDelete();
+      return true;
+    } else {
+      alert(`Có lỗi xảy ra khi xoá dữ liệu: ${typeID} từ ${typeValue}, bạn có chắc là dữ liệu tồn tại ?`);
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };
 
 console.log('File deleteData.js is running');
