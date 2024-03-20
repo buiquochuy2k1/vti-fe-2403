@@ -128,7 +128,7 @@ function createDataProduct(data) {
     var productType = document.getElementById('productType').value;
     var productImage = document.getElementById('productImage').value;
     var price = document.getElementById('productPrice').value;
-    var isUsed = document.getElementById('productUsed').value.toLowerCase();
+    var isUsed = document.getElementById('productUsed').value;
     var countInStock = document.getElementById('productStock').value;
     var discount = document.getElementById('productDiscount').value;
 
@@ -136,7 +136,7 @@ function createDataProduct(data) {
       return alert('Please fill in all fields');
     }
 
-    if (isUsed !== 'true' && isUsed !== 'false') {
+    if (isUsed.toLowerCase() !== 'true' && isUsed.toLowerCase() !== 'false') {
       return alert('productUsed only true and false');
     }
 
