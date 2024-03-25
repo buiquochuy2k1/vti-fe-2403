@@ -47,6 +47,8 @@ const deleteDataAPI = async (typeValue, typeID) => {
   } catch (error) {
     console.error(error);
     return false;
+  } finally {
+    console.log('first');
   }
 };
 

@@ -525,7 +525,46 @@ body {
   cursor: pointer;
 }
 
-/* CSS */
+/* MODAL EDIT */
+.modalEdit {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modalEdit-content {
+  border-radius: 15px;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close Button */
+.closeModalEdit {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeModalEdit:hover,
+.closeModalEdit:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* CSS  BUTTON*/
 .button-9 {
   appearance: button;
   backface-visibility: hidden;
@@ -676,6 +715,53 @@ body {
 }
 
 .modalDelete-body .input_box i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+/* Modal Content/Box */
+.modalEdit-content {
+  border-radius: 15px;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modalEdit-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.modalEdit-body .input_box {
+  margin-top: 30px;
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+
+.modalEdit-body .input_box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #333;
+  border-bottom: 1.5px solid grey;
+  padding: 0 30px;
+  transition: all 0.2 ease;
+  font-size: 20px;
+}
+
+.modalEdit-body .input_box input:focus {
+  border-color: #7d2ae8;
+}
+
+.modalEdit-body .input_box i {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

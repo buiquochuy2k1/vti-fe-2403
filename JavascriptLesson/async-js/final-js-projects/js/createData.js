@@ -93,7 +93,7 @@ function createData(dataType) {
 }
 
 // TẠO DATA KHI BẤM NÚT CREATE
-function createDataProduct(data) {
+async function createDataProduct(data) {
   if (data == 'users') {
     var id = document.getElementById('userId').value;
     var name = document.getElementById('userName').value;
@@ -117,8 +117,6 @@ function createDataProduct(data) {
       workplace,
     };
 
-    console.log(JSON.stringify(allData));
-
     createUserAPI(allData);
 
     closeModalCreate();
@@ -136,8 +134,18 @@ function createDataProduct(data) {
       return alert('Please fill in all fields');
     }
 
+    if (countInStock <= 0) {
+      return alert('Stock must higher than 1');
+    }
+
     if (isUsed.toLowerCase() !== 'true' && isUsed.toLowerCase() !== 'false') {
       return alert('productUsed only true and false');
+    }
+
+    const isDuplicate = await checkProductsAPI(id, productName);
+
+    if (isDuplicate) {
+      return alert('Tên đã được sử dụng, hoặc data đã tồn tại');
     }
 
     var allData = {
@@ -150,8 +158,6 @@ function createDataProduct(data) {
       countInStock,
       discount,
     };
-
-    console.log(JSON.stringify(allData));
 
     createProductAPI(allData);
 
@@ -181,6 +187,26 @@ const createUserAPI = async (data) => {
   });
 
   return response.json();
+};
+
+// ---------------------------------------------
+// FUNCTION KIỂM TRA TÊN BỊ TRÙNG
+
+const checkProductsAPI = async (id, productName) => {
+  try {
+    const response = await fetch(`${BASE_API_LINK}/products`);
+    const responseData = await response.json();
+
+    for (const product of responseData) {
+      if (product.id !== id && product.productName === productName) {
+        return true;
+      }
+    }
+    return false;
+  } catch (error) {
+    console.error('Error:', error);
+    return false;
+  }
 };
 
 console.log('File createData.js is running');

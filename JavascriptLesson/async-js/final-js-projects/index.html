@@ -105,6 +105,14 @@
             <i class='bx bxs-comment-add'></i>
             <span class="text">Create Product</span>
           </a>
+          <a onclick="sortDataIPv4()" class="btn-download" style="cursor: pointer;">
+            <i class='bx bx-down-arrow-alt'></i>
+            <span class="text">Sort IPv4</span>
+          </a>
+          <!-- <a onclick="createData('products')" class="btn-download" style="cursor: pointer;">
+            <i class='bx bx-up-arrow-alt' ></i>
+            <span class="text">Sort</span>
+          </a> -->
         </div>
 
         <div class="content-data-box">
@@ -123,6 +131,19 @@
       <!-- MAIN -->
     </section>
     <!-- CONTENT -->
+    <div id="myModalEdit" class="modalEdit">
+      <div class="modalEdit-content animate__animated animate__zoomIn">
+        <span class="closeModalEdit" onclick="closeModalEdit()">&times;</span>
+        <div class="modalEdit-header">
+        </div>
+        <div class="modalEdit-body">
+        </div>
+        <div class="modalEdit-footer">
+        </div>
+      </div>
+    </div>
+
+
     <div id="myModalDelete" class="modalDelete">
       <div class="modalDelete-content animate__animated animate__zoomIn">
         <span class="closeModalDelete" onclick="closeModalDelete()">&times;</span>
@@ -133,7 +154,7 @@
         <div class="modalDelete-footer">
         </div>
       </div>
-  </div>
+    </div>
 
     <div id="myModalCreate" class="modalCreate">
       <div class="modalCreate-content animate__animated animate__zoomIn">
@@ -146,23 +167,25 @@
         <div class="modalCreate-footer">
         </div>
       </div>
-  </div>
+    </div>
 
-  <div id="myModal" class="modal">
-    <div class="modal-content animate__animated animate__zoomIn">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-header">
-        <!-- <h2>Modal Header</h2> -->
-      </div>
-      <div class="modal-body">
-        <!-- <p>Modal Content</p> -->
-      </div>
-      <div class="modal-footer">
+    <div id="myModal" class="modal">
+      <div class="modal-content animate__animated animate__zoomIn">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-header">
+          <!-- <h2>Modal Header</h2> -->
+        </div>
+        <div class="modal-body">
+          <!-- <p>Modal Content</p> -->
+        </div>
+        <div class="modal-footer">
+        </div>
       </div>
     </div>
-</div>
+
     <script src="js/mainScript.js"></script>
     <script src="js/createData.js"></script>
+    <script src="js/editData.js"></script>
     <script src="js/deleteData.js"></script>
   </body>
 </html>

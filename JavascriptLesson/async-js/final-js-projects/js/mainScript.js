@@ -70,6 +70,7 @@ const modalHeader = document.querySelector('.modal-header');
 const modalBody = document.querySelector('.modal-body');
 const modalCreateBody = document.querySelector('.modalCreate-body');
 const modalDeleteBody = document.querySelector('.modalDelete-body');
+const modalEditBody = document.querySelector('.modalEdit-body');
 
 // DÒNG NÀY SẼ CHẠY KHI BẮT ĐẦU MỞ WEB
 contentText.innerHTML = '<h1><strong>Please select data.</strong></h1>';
@@ -157,6 +158,19 @@ function getUsers() {
     });
 }
 
+async function sortDataIPv4() {
+  contentText.innerHTML = '<h1><strong>Loading data....</strong></h1>';
+
+  getAllUsersFromAPI()
+    .then((data) => {
+      data.sort((a, b) => b.ipv4.length - a.ipv4.length);
+      contentText.innerHTML = createUserCardList(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      contentText.innerHTML = '<h1><strong>Something went wrong. Retry later</strong></h1>';
+    });
+}
 function getHomePage() {
   contentText.innerHTML = '<h1><strong>Please select data.</strong></h1>';
 }
@@ -182,6 +196,7 @@ function getProductDetail(data) {
     <p><strong>Is Used</strong>: ${data.isUsed ? '2ND' : 'NEW'}</p>
     <p><strong>Discount</strong>: <span style="color: red">${data.discount}%</span></p>
     <button class="button-9" onclick='closeModal()'>Close</button>
+    <button class="button-9" onclick='openEditData()'>Edit</button>
   </div>`;
 }
 
@@ -199,6 +214,7 @@ function getUserDetail(data) {
     <p><strong>Work Place</strong>: ${data.workplace}</p>
     <p><strong>Create At</strong>: <span style="color: red">${data.createdAt}%</span></p>
     <button class="button-9" onclick='closeModal()'>Close</button>
+    <button class="button-9" onclick='console.log(${JSON.stringify(data)})'>Edit</button>
   </div>`;
 }
 
@@ -212,6 +228,10 @@ function closeModalCreate() {
   document.getElementById('myModalCreate').style.display = 'none';
 }
 
+function closeModalEdit() {
+  document.getElementById('myModalEdit').style.display = 'none';
+}
+
 function closeModal() {
   document.getElementById('myModal').style.display = 'none';
 }
@@ -221,6 +241,8 @@ window.onclick = function (event) {
   var modal = document.getElementById('myModal');
   var modalCreate = document.getElementById('myModalCreate');
   var modalDelete = document.getElementById('myModalDelete');
+  var modalEdit = document.getElementById('myModalEdit');
+
   if (event.target == modal) {
     closeModal();
   }
@@ -229,6 +251,9 @@ window.onclick = function (event) {
   }
   if (event.target == modalDelete) {
     closeModalDelete();
+  }
+  if (event.target == modalEdit) {
+    closeModalEdit();
   }
 };
 
