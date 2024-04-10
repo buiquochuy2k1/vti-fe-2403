@@ -17,3 +17,11 @@
 .fr-1 {
   float: right;
 }
+
+.odd {
+  color: green;
+}
+
+.even {
+  color: red;
+}
