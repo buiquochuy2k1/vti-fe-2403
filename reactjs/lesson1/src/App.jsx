@@ -7,6 +7,8 @@ import './App.css';
 // import FormQ4 from './components/Form/FormQ4';
 // import FormQ5 from './components/Form/FormQ5';
 // import LifeCycle from './components/LifeCycle/LifeCycle';
+// import Home from './components/Context/Practice1/Home';
+import HomeTheme from './components/Context/Practice2/HomeTheme';
 
 function App() {
   // const [counter, setCounter] = useState(0);
@@ -28,7 +30,7 @@ function App() {
   }, []);
   return (
     <>
-      <div className="h-screen w-full flex items-center justify-center">
+      <div className="h-screen w-full">
         {/* <AllCardComponent />
         <Fragment /> */}
         {/* <FormQ4 /> */}
@@ -41,7 +43,7 @@ function App() {
         >
           Click
         </button> */}
-        <div>
+        {/* <div>
           {data?.data?.map((item, index) => {
             return (
               <ul key={index}>
@@ -52,7 +54,9 @@ function App() {
               </ul>
             );
           })}
-        </div>
+        </div> */}
+        {/* <Home /> */}
+        <HomeTheme />
       </div>
     </>
   );
