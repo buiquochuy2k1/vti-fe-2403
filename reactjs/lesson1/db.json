@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "6",
+      "email": "random5@gmail.com",
+      "username": "user5",
+      "fullName": "Random User 5",
+      "department": "Marketing",
+      "position": "Assistant"
+    },
+    {
+      "id": "7",
+      "email": "random6@gmail.com",
+      "username": "user6",
+      "fullName": "Random User 6",
+      "department": "Finance",
+      "position": "Assistant"
+    }
+  ]
+}
