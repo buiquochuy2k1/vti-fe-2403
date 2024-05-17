@@ -1,9 +1,11 @@
-import UserData from './components/UserData/UserData';
+import Menu from './components/Menu/Menu';
 
 function App() {
   return (
     <>
-      <div className="h-screen w-full">{/* <UserData /> */}</div>
+      <div className="h-screen w-full">
+        <Menu />
+      </div>
     </>
   );
 }
