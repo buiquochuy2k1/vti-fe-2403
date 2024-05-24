@@ -1,5 +1,5 @@
 {
-  "name": "lesson1",
+  "name": "finalproject",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,17 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "json-server": "^1.0.0-alpha.23",
-    "localforage": "^1.10.0",
-    "match-sorter": "^6.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
-    "react-tailwindcss-datepicker": "^1.6.6",
-    "sort-by": "^1.2.0"
-  },
-  "rules": {
-    "react/prop-types": "off"
+    "react-tailwindcss-datepicker": "^1.6.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
