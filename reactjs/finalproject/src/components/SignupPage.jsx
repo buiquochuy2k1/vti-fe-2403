@@ -25,7 +25,7 @@ const SignupPage = () => {
 
   return (
     <>
-      <div className="animate__animated animate__fadeInDown flex h-screen items-center justify-center text-white ">
+      <div className="animate__animated animate__zoomIn flex h-screen items-center justify-center text-white ">
         <div className=" w-[850px] rounded-3xl bg-gray-800 p-10 shadow-lg">
           <div className="space-y-2">
             <h1 className="text-4xl font-normal">Sign Up</h1>
@@ -88,6 +88,7 @@ const SignupPage = () => {
             <div className="flex gap-x-4">
               <div className="grow">
                 <SelectDropdown
+                  id="selectNationality"
                   title="Nationality"
                   options={NationalityOptions}
                   //value={gender}
@@ -96,6 +97,7 @@ const SignupPage = () => {
               </div>
               <div className="grow">
                 <SelectDropdown
+                  id="selectIDType"
                   title="ID Type"
                   options={IDType}
                   //value={gender}
@@ -125,6 +127,47 @@ const SignupPage = () => {
               </div>
             </div>
 
+            <fieldset>
+              <legend className="sr-only">Checkbox variants</legend>
+
+              <div className="mb-4 flex items-center">
+                <input
+                  id="checkbox-1"
+                  type="checkbox"
+                  value=""
+                  className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
+                />
+                <label
+                  htmlFor="checkbox-1"
+                  className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  I agree to the{" "}
+                  <a
+                    href="#"
+                    className="text-blue-600 hover:underline dark:text-blue-500"
+                  >
+                    terms and conditions
+                  </a>
+                  .
+                </label>
+              </div>
+
+              <div className="mb-4 flex items-center">
+                <input
+                  id="checkbox-2"
+                  type="checkbox"
+                  value=""
+                  className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
+                />
+                <label
+                  htmlFor="checkbox-3"
+                  className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  I am 18 years or older
+                </label>
+              </div>
+            </fieldset>
+
             <button className="cursor-pointer rounded-lg border-2 border-[#3e3e3e] bg-indigo-500 px-6 py-3 text-base text-white transition hover:border-[#fff]">
               Confirm Account
             </button>
@@ -132,7 +175,10 @@ const SignupPage = () => {
 
           <div className="mt-4 text-center">
             <p>
-              Already have an account? <span>Login</span>
+              Already have an account?{" "}
+              <span className="text-indigo-500">
+                <a href="/login">Login</a>
+              </span>
             </p>
           </div>
         </div>

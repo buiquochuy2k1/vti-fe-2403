@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const SelectDropdown = ({ title, options, value, onChange }) => {
+const SelectDropdown = ({ id, title, options, value, onChange }) => {
   return (
     <div>
       <label
@@ -25,8 +25,8 @@ const SelectDropdown = ({ title, options, value, onChange }) => {
           </svg>
         </div>
         <select
+          id={id}
           className="block h-[42px] w-[377px] rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          id="select"
           value={value}
           onChange={onChange}
         >
@@ -46,6 +46,7 @@ const SelectDropdown = ({ title, options, value, onChange }) => {
 };
 
 SelectDropdown.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   value: PropTypes.string.isRequired,
