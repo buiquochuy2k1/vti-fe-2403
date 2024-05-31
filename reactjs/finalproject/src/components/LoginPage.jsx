@@ -1,49 +1,79 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InputForm from "./InputForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const Identifier = {
-    key: "userToken",
-    value: "4G02zBeVAt2GMF5aV0P77PeDxoIGKpQhquQkohHcVfQPbVvPkisHs2qAkyq1lcq6",
+  const usenavigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
+  const validateLogin = () => {
+    let result = true;
+    if (username === "" || username === null) {
+      result = false;
+      Swal.fire({
+        title: "An error occur!",
+        text: "Please Enter Valid Username!",
+        icon: "error",
+      });
+    } else if (password === "" || password === null) {
+      result = false;
+      Swal.fire({
+        title: "An error occur!",
+        text: "Please Enter Password",
+        icon: "error",
+      });
+    }
+
+    return result;
   };
 
-  const accounts = [
-    {
-      email: email,
-      password: password,
-    },
-  ];
-
-  const handleSubmit = (e) => {
+  const ProcessLogin = (e) => {
     e.preventDefault();
-
-    if (accounts[0].email === "" || accounts[0].password === "") {
-      Swal.fire({
-        title: "An error occur!",
-        text: "Please fill in all fields!",
-        icon: "error",
-      });
-    } else if (
-      accounts[0].email === "admin" ||
-      accounts[0].password === "admin"
-    ) {
-      Swal.fire({
-        title: "Welcome back!",
-        icon: "success",
-      });
-      console.log("Login success!");
-      console.log(Identifier.key, Identifier.value);
-    } else {
-      Swal.fire({
-        title: "An error occur!",
-        text: "Invalid email or password!",
-        icon: "error",
-      });
+    if (validateLogin()) {
+      axios
+        .get("http://localhost:3000/user?userName=" + username)
+        .then((res) => {
+          return res.data;
+        })
+        .then((resp) => {
+          if (Object.keys(resp).length === 0) {
+            Swal.fire({
+              title: "An error occur!",
+              text: "Account not found in database",
+              icon: "error",
+            });
+          } else {
+            if (resp[0].password == password) {
+              localStorage.setItem("username", username);
+              localStorage.setItem(
+                "userToken",
+                "4G02zBeVAt2GMF5aV0P77PeDxoIGKpQhquQkohHcVfQPbVvPkisHs2qAkyq1lcq6",
+              );
+              usenavigate("/");
+            } else {
+              Swal.fire({
+                title: "An error occur!",
+                text: "Your password is incorrect!",
+                icon: "error",
+              });
+            }
+          }
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "An error occur!",
+            text: "Login Failed due to :" + err.message,
+            icon: "error",
+          });
+        });
     }
   };
   return (
@@ -57,14 +87,14 @@ const LoginPage = () => {
               <p>Login to your account below</p>
             </div>
           </div>
-          <form className="mt-5 flex flex-col gap-5" onSubmit={handleSubmit}>
+          <form className="mt-5 flex flex-col gap-5" onSubmit={ProcessLogin}>
             <div className="grow">
               <InputForm
-                title="Email"
-                placeholder="Enter your email"
+                title="Username"
+                placeholder="Enter your username"
                 type="text"
-                value={email}
-                onChange={setEmail}
+                value={username}
+                onChange={setUserName}
               />
             </div>
             <div className="grow">
@@ -84,9 +114,7 @@ const LoginPage = () => {
             <p>
               Dont have an account?{" "}
               <span className="text-indigo-500">
-                <Link to="/register">
-                  <a href="">Sign up for Free</a>
-                </Link>
+                <Link to="/register">Sign up for Free</Link>
               </span>
             </p>
           </div>

@@ -1,0 +1,33 @@
+{
+  "user": [],
+  "roleaccess": [
+    {
+      "role": "admin",
+      "menu": "customer",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true
+    },
+    {
+      "role": "admin",
+      "menu": "supplier",
+      "haveadd": true,
+      "haveedit": true,
+      "havedelete": true
+    },
+    {
+      "role": "user",
+      "menu": "customer",
+      "haveadd": false,
+      "haveedit": false,
+      "havedelete": false
+    },
+    {
+      "role": "user1",
+      "menu": "customer",
+      "haveadd": false,
+      "haveedit": false,
+      "havedelete": false
+    }
+  ]
+}

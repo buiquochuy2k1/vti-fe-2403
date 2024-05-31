@@ -3,10 +3,7 @@ import PropTypes from "prop-types";
 const SelectDropdown = ({ id, title, options, value, onChange }) => {
   return (
     <div>
-      <label
-        htmlFor="select"
-        className="block text-sm font-semibold text-white"
-      >
+      <label htmlFor={id} className="block text-sm font-semibold text-white">
         {title}
       </label>
       <div className="relative max-w-sm">

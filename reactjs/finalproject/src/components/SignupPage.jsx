@@ -1,26 +1,144 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
 import SelectDropdown from "./SelectDropdown";
-import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { nanoid } from "nanoid";
 
 const SignupPage = () => {
+  // USER REGISTER
+
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [gender, setGender] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [birthDay, setBirthDay] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
+  // END OF USER REGISTER
+
+  const GenderOptions = ["None", "Male", "Female", "Other"];
+
   const NationalityOptions = [
+    "None",
     "Brazil",
     "Malaysia",
     "Singapore",
     "Thailand",
     "Vietnam",
   ];
-  const IDType = ["User", "Admin"];
 
-  const [value, setValue] = useState({
-    startDate: null,
-    endDate: null,
-  });
+  const navigate = useNavigate();
+
+  const IsValidate = () => {
+    let isproceed = true;
+    let errormessage = "Please enter the value in all fields";
+
+    if (userName === null || userName === "") {
+      isproceed = false;
+    }
+
+    if (email === null || email === "") {
+      isproceed = false;
+    }
+
+    if (password === null || password === "") {
+      isproceed = false;
+    }
+
+    if (phoneNum === null || phoneNum === "") {
+      isproceed = false;
+    }
+
+    if (gender === null || gender === "" || gender === "None") {
+      isproceed = false;
+    }
+
+    if (nationality === null || nationality === "" || nationality === "None") {
+      isproceed = false;
+    }
+
+    if (confirmPassword === null || confirmPassword === "") {
+      isproceed = false;
+    }
+
+    if (confirmPassword !== password) {
+      isproceed = false;
+      errormessage = "Password and Confirm Password not match";
+    }
+
+    if (!isproceed) {
+      Swal.fire({
+        title: "An error occur!",
+        text: errormessage,
+        icon: "error",
+      });
+    } else {
+      if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
+        console.log("Đã check đuôi email là @test.com");
+      } else {
+        isproceed = false;
+        Swal.fire({
+          title: "An error occur!",
+          text: "Please enter the valid email",
+          icon: "error",
+        });
+      }
+    }
+    return isproceed;
+  };
 
   const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setValue(newValue);
+    setBirthDay(newValue);
+  };
+
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    const id = nanoid();
+    let regobj = {
+      id,
+      userName,
+      email,
+      password,
+      confirmPassword,
+      phoneNum,
+      birthDay,
+      nationality,
+      gender,
+    };
+    if (IsValidate()) {
+      // console.log(regobj);
+      axios({
+        method: "POST",
+        url: "http://localhost:3000/user",
+        data: JSON.stringify(regobj),
+      })
+        .then(() => {
+          Swal.fire({
+            title: "Registered successfully!",
+            text: "You can login now",
+            icon: "success",
+          }).then((response) => {
+            if (response.isConfirmed) {
+              navigate("/login");
+            }
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "An error occur!",
+            text: "Failed :" + err.message,
+            icon: "error",
+          });
+        });
+    }
   };
 
   return (
@@ -33,15 +151,15 @@ const SignupPage = () => {
               Enter your detail below to create your account and get started. 👋
             </p>
           </div>
-          <form className="mt-5 flex flex-col gap-5">
+          <form onSubmit={handlesubmit} className="mt-5 flex flex-col gap-5">
             <div className="flex gap-x-4">
               <div className="grow">
                 <InputForm
-                  title="Full Name"
-                  placeholder="Enter your full name"
+                  title="Username"
+                  placeholder="Enter your username"
                   type="text"
-                  // value={email}
-                  // onChange={setEmail}
+                  value={userName.trim().toLowerCase()}
+                  onChange={setUserName}
                 />
               </div>
               <div className="grow">
@@ -49,8 +167,8 @@ const SignupPage = () => {
                   title="Email"
                   placeholder="Enter your email"
                   type="text"
-                  // value={password}
-                  // onChange={setPassword}
+                  value={email}
+                  onChange={setEmail}
                 />
               </div>
             </div>
@@ -68,7 +186,7 @@ const SignupPage = () => {
                   containerClassName="relative max-w-xl"
                   asSingle={true}
                   primaryColor={"fuchsia"}
-                  value={value}
+                  value={birthDay}
                   onChange={handleValueChange}
                   displayFormat={"DD/MM/YYYY"}
                   showShortcuts={true}
@@ -79,8 +197,8 @@ const SignupPage = () => {
                   title="Phone Number"
                   placeholder="Type your phone number"
                   type="number"
-                  //value={userPhoneNum}
-                  //onChange={setUserPhoneNum}
+                  value={phoneNum}
+                  onChange={setPhoneNum}
                 />
               </div>
             </div>
@@ -88,20 +206,20 @@ const SignupPage = () => {
             <div className="flex gap-x-4">
               <div className="grow">
                 <SelectDropdown
-                  id="selectNationality"
+                  id="select"
                   title="Nationality"
                   options={NationalityOptions}
-                  //value={gender}
-                  //onChange={(e) => setGender(e.target.value)}
+                  value={nationality}
+                  onChange={(e) => setNationality(e.target.value)}
                 />
               </div>
               <div className="grow">
                 <SelectDropdown
-                  id="selectIDType"
-                  title="ID Type"
-                  options={IDType}
-                  //value={gender}
-                  //onChange={(e) => setGender(e.target.value)}
+                  id="select1"
+                  title="Gender"
+                  options={GenderOptions}
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                 />
               </div>
             </div>
@@ -112,8 +230,8 @@ const SignupPage = () => {
                   title="Password"
                   placeholder="Enter your password"
                   type="password"
-                  // value={email}
-                  // onChange={setEmail}
+                  value={password}
+                  onChange={setPassword}
                 />
               </div>
               <div className="grow">
@@ -121,8 +239,8 @@ const SignupPage = () => {
                   title="Confirm Password"
                   placeholder="Confirm your password"
                   type="password"
-                  // value={password}
-                  // onChange={setPassword}
+                  value={confirmPassword}
+                  onChange={setConfirmPassword}
                 />
               </div>
             </div>

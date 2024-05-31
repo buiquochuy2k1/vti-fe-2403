@@ -1,13 +1,16 @@
 // import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
+
 const Navbar = () => {
   const NavItems = [
     { name: "Home", link: "/" },
     { name: "User List", link: "/users-list" },
-    { name: "Login", link: "/login" },
-    { name: "Create", link: "/user/create" },
   ];
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+  };
   return (
     <nav>
       <div className="h-10vh z-50 flex justify-between border-b border-slate-800 px-20 py-4 text-black lg:py-5">
@@ -29,6 +32,11 @@ const Navbar = () => {
                   </ul>
                 );
               })}
+              <li className="cursor-pointer border-b-2 border-slate-900 transition hover:border-green-600 hover:text-green-600">
+                <a onClick={handleLogout} className="text-black">
+                  Sign Out
+                </a>
+              </li>
             </ul>
           </div>
         </div>
