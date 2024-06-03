@@ -12,7 +12,7 @@ const CreateUser = () => {
     "Thailand",
     "Vietnam",
   ];
-  const IDType = ["User", "Admin"];
+  const GenderOptions = ["None", "Male", "Female"];
 
   const [value, setValue] = useState({
     startDate: null,
@@ -97,7 +97,7 @@ const CreateUser = () => {
                 <SelectDropdown
                   id="selectIDType"
                   title="ID Type"
-                  options={IDType}
+                  options={GenderOptions}
                   //value={gender}
                   //onChange={(e) => setGender(e.target.value)}
                 />

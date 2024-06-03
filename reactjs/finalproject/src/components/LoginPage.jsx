@@ -39,7 +39,7 @@ const LoginPage = () => {
     e.preventDefault();
     if (validateLogin()) {
       axios
-        .get("http://localhost:3000/user?userName=" + username)
+        .get("http://localhost:3000/account?userName=" + username)
         .then((res) => {
           return res.data;
         })

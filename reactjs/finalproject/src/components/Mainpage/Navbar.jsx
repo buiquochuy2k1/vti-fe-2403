@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 
 const Navbar = () => {
@@ -6,10 +6,11 @@ const Navbar = () => {
     { name: "Home", link: "/" },
     { name: "User List", link: "/users-list" },
   ];
-
+  const Navigate = useNavigate();
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.clear();
+    Navigate("/login");
   };
   return (
     <nav>
@@ -33,9 +34,9 @@ const Navbar = () => {
                 );
               })}
               <li className="cursor-pointer border-b-2 border-slate-900 transition hover:border-green-600 hover:text-green-600">
-                <a onClick={handleLogout} className="text-black">
+                <button onClick={handleLogout} className="text-black">
                   Sign Out
-                </a>
+                </button>
               </li>
             </ul>
           </div>

@@ -10,6 +10,8 @@ import { nanoid } from "nanoid";
 const SignupPage = () => {
   // USER REGISTER
 
+  const fullName = "No Data";
+
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
@@ -104,6 +106,7 @@ const SignupPage = () => {
     const id = nanoid();
     let regobj = {
       id,
+      fullName,
       userName,
       email,
       password,
@@ -117,7 +120,7 @@ const SignupPage = () => {
       // console.log(regobj);
       axios({
         method: "POST",
-        url: "http://localhost:3000/user",
+        url: "http://localhost:3000/account",
         data: JSON.stringify(regobj),
       })
         .then(() => {

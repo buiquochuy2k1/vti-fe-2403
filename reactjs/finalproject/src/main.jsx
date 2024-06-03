@@ -9,6 +9,8 @@ import LoginPage from "./components/LoginPage.jsx";
 import UserDetail from "./components/Mainpage/UserDetail.jsx";
 import CreateUser from "./components/Mainpage/UserCreate.jsx";
 import UserList from "./components/Mainpage/UserList.jsx";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const router = createBrowserRouter([
   {
@@ -38,8 +40,11 @@ const router = createBrowserRouter([
     element: <LoginPage />,
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 );

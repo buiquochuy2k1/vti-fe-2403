@@ -1,33 +1,57 @@
 {
-  "user": [],
-  "roleaccess": [
+  "account": [
     {
-      "role": "admin",
-      "menu": "customer",
-      "haveadd": true,
-      "haveedit": true,
-      "havedelete": true
+      "id": "xMDL3Q2Zxukrw-juFxXv-",
+      "fullName": "No Data",
+      "userName": "admin",
+      "email": "test@test.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "phoneNum": "0903915569",
+      "birthDay": {
+        "startDate": "2024-06-03",
+        "endDate": "2024-06-03"
+      },
+      "nationality": "Vietnam",
+      "gender": "Male"
+    }
+  ],
+  "user": [
+    {
+      "id": "x1232312",
+      "fullName": "No Data",
+      "email": "test@test.com",
+      "phoneNum": "0903915569",
+      "birthDay": {
+        "startDate": "2024-06-03",
+        "endDate": "2024-06-03"
+      },
+      "nationality": "Vietnam",
+      "gender": "Male"
     },
     {
-      "role": "admin",
-      "menu": "supplier",
-      "haveadd": true,
-      "haveedit": true,
-      "havedelete": true
+      "id": "x1232312321312",
+      "fullName": "No Data",
+      "email": "test@test.com",
+      "phoneNum": "0903915569",
+      "birthDay": {
+        "startDate": "2024-06-03",
+        "endDate": "2024-06-03"
+      },
+      "nationality": "Vietnam",
+      "gender": "Male"
     },
     {
-      "role": "user",
-      "menu": "customer",
-      "haveadd": false,
-      "haveedit": false,
-      "havedelete": false
-    },
-    {
-      "role": "user1",
-      "menu": "customer",
-      "haveadd": false,
-      "haveedit": false,
-      "havedelete": false
+      "id": "x1231231232312",
+      "fullName": "No Data",
+      "email": "test@test.com",
+      "phoneNum": "0903915569",
+      "birthDay": {
+        "startDate": "2024-06-03",
+        "endDate": "2024-06-03"
+      },
+      "nationality": "Vietnam",
+      "gender": "Male"
     }
   ]
 }

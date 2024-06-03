@@ -1,7 +1,6 @@
-import Footer from "./components/Mainpage/Footer";
-import Navbar from "./components/Mainpage/Navbar";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Dashboard from "./components/Mainpage/Dashboard";
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -12,16 +11,13 @@ const App = () => {
   }, []);
 
   console.log(token);
+
   const navigate = useNavigate();
   return (
     <>
       {token ? (
         <div className="h-screen w-full">
-          <Navbar />
-          <div className="m-10">
-            <Outlet />
-          </div>
-          <Footer />
+          <Dashboard />
         </div>
       ) : (
         navigate("/login")
