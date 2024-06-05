@@ -163,6 +163,7 @@ const SignupPage = () => {
                   type="text"
                   value={userName.trim().toLowerCase()}
                   onChange={setUserName}
+                  isDisabled={false}
                 />
               </div>
               <div className="grow">
@@ -172,6 +173,7 @@ const SignupPage = () => {
                   type="text"
                   value={email}
                   onChange={setEmail}
+                  isDisabled={false}
                 />
               </div>
             </div>
@@ -202,6 +204,7 @@ const SignupPage = () => {
                   type="number"
                   value={phoneNum}
                   onChange={setPhoneNum}
+                  isDisabled={false}
                 />
               </div>
             </div>
@@ -235,6 +238,7 @@ const SignupPage = () => {
                   type="password"
                   value={password}
                   onChange={setPassword}
+                  isDisabled={false}
                 />
               </div>
               <div className="grow">
@@ -244,6 +248,7 @@ const SignupPage = () => {
                   type="password"
                   value={confirmPassword}
                   onChange={setConfirmPassword}
+                  isDisabled={false}
                 />
               </div>
             </div>

@@ -14,41 +14,31 @@
       },
       "nationality": "Vietnam",
       "gender": "Male"
+    },
+    {
+      "id": "1yqKduiR-cY2KNRnP5-1r",
+      "fullName": "No Data",
+      "userName": "dunggay123",
+      "email": "dunggay123@test.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "phoneNum": "0902747669",
+      "birthDay": {
+        "startDate": "2024-06-05",
+        "endDate": "2024-06-05"
+      },
+      "nationality": "Vietnam",
+      "gender": "Male"
     }
   ],
   "user": [
     {
-      "id": "x1232312",
-      "fullName": "No Data",
-      "email": "test@test.com",
+      "id": "x5Sd64xDjO",
+      "fullName": "Dũng Gay",
       "phoneNum": "0903915569",
       "birthDay": {
-        "startDate": "2024-06-03",
-        "endDate": "2024-06-03"
-      },
-      "nationality": "Vietnam",
-      "gender": "Male"
-    },
-    {
-      "id": "x1232312321312",
-      "fullName": "No Data",
-      "email": "test@test.com",
-      "phoneNum": "0903915569",
-      "birthDay": {
-        "startDate": "2024-06-03",
-        "endDate": "2024-06-03"
-      },
-      "nationality": "Vietnam",
-      "gender": "Male"
-    },
-    {
-      "id": "x1231231232312",
-      "fullName": "No Data",
-      "email": "test@test.com",
-      "phoneNum": "0903915569",
-      "birthDay": {
-        "startDate": "2024-06-03",
-        "endDate": "2024-06-03"
+        "startDate": "2024-06-05",
+        "endDate": "2024-06-05"
       },
       "nationality": "Vietnam",
       "gender": "Male"

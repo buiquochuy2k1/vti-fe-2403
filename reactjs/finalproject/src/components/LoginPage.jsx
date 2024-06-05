@@ -95,6 +95,7 @@ const LoginPage = () => {
                 type="text"
                 value={username}
                 onChange={setUserName}
+                isDisabled={false}
               />
             </div>
             <div className="grow">
@@ -104,6 +105,7 @@ const LoginPage = () => {
                 type="password"
                 value={password}
                 onChange={setPassword}
+                isDisabled={false}
               />
             </div>
             <button className="cursor-pointer rounded-lg border-2 border-[#3e3e3e] bg-indigo-500 px-6 py-3 text-base text-white transition hover:border-[#fff]">

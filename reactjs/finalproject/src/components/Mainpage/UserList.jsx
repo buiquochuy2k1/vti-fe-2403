@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserList, deleteUser } from "../../store/userReducer";
 import Swal from "sweetalert2";
@@ -37,9 +37,35 @@ const UserList = () => {
       }
     });
   };
+
+  ///PAGINATION SETTINGS
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemPersPage = 5;
+  const indexOfLastItem = currentPage * itemPersPage;
+  const indexOfFirstItem = indexOfLastItem - itemPersPage;
+  const currentItems = userList?.slice(indexOfFirstItem, indexOfLastItem);
+  const numbersPage = Math.ceil(userList?.length / itemPersPage);
+  const numbers = [...Array(numbersPage + 1).keys()].slice(1);
+
+  const nextPage = () => {
+    if (currentPage < numbersPage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const changeToClickPage = (num) => {
+    setCurrentPage(num);
+  };
+
+  //END OF PAGINATION SETTINGS
   return (
     <>
-      <div className="animate__animated  animate__fadeIn relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="animate__animated  animate__fadeIn relative overflow-x-auto bg-gray-800 shadow-md sm:rounded-lg">
         <button
           onClick={() => {
             Navigate("/user/create");
@@ -156,7 +182,7 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {userList?.map((user, index) => (
+            {currentItems?.map((user, index) => (
               <tr
                 key={index}
                 className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
@@ -190,6 +216,50 @@ const UserList = () => {
             ))}
           </tbody>
         </table>
+        <nav
+          className="flex-column flex flex-wrap items-center justify-between p-4 md:flex-row"
+          aria-label="Table navigation"
+        >
+          <span className="mb-4 block w-full text-sm font-normal text-gray-500 md:mb-0 md:inline md:w-auto dark:text-gray-400">
+            Showing{" "}
+            <span className="font-semibold text-gray-900 dark:text-white">
+              {indexOfFirstItem + 1}
+            </span>{" "}
+            of{" "}
+            <span className="font-semibold text-gray-900 dark:text-white">
+              {userList?.length}
+            </span>{" "}
+            users
+          </span>
+          <ul className="inline-flex h-8 -space-x-px text-sm rtl:space-x-reverse">
+            <li>
+              <a
+                onClick={prevPage}
+                className="ms-0 flex h-8 cursor-pointer items-center justify-center rounded-s-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                Previous
+              </a>
+            </li>
+            {numbers.map((number, index) => (
+              <li key={index}>
+                <a
+                  onClick={() => changeToClickPage(number)}
+                  className="flex h-8 cursor-pointer items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white "
+                >
+                  {number}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                onClick={nextPage}
+                className="flex h-8 cursor-pointer items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </>
   );

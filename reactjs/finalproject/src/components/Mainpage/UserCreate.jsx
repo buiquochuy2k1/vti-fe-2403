@@ -1,11 +1,30 @@
 import InputForm from "../InputForm";
 import SelectDropdown from "../SelectDropdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { Link } from "react-router-dom";
-
+import Swal from "sweetalert2";
+import { nanoid } from "nanoid";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const CreateUser = () => {
+  // USER REGISTER
+
+  const [userID, setUserID] = useState();
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
+
+  const [phoneNum, setPhoneNum] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [gender, setGender] = useState("");
+
+  const [birthDay, setBirthDay] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
   const NationalityOptions = [
+    "None",
     "Brazil",
     "Malaysia",
     "Singapore",
@@ -14,16 +33,100 @@ const CreateUser = () => {
   ];
   const GenderOptions = ["None", "Male", "Female"];
 
-  const [value, setValue] = useState({
-    startDate: null,
-    endDate: null,
-  });
-
   const handleValueChange = (newValue) => {
     console.log("newValue:", newValue);
-    setValue(newValue);
+    setBirthDay(newValue);
   };
 
+  useEffect(() => {
+    setUserID(nanoid(10));
+  }, []);
+
+  const Navigate = useNavigate();
+
+  const IsValidate = () => {
+    let isproceed = true;
+    let errormessage = "Please enter the value in all fields";
+
+    if (firstName === null || firstName === "") {
+      isproceed = false;
+    }
+
+    if (lastName === null || lastName === "") {
+      isproceed = false;
+    }
+
+    if (phoneNum === null || phoneNum === "") {
+      isproceed = false;
+    }
+
+    if (gender === null || gender === "" || gender === "None") {
+      isproceed = false;
+    }
+
+    if (nationality === null || nationality === "" || nationality === "None") {
+      isproceed = false;
+    }
+
+    if (
+      birthDay.startDate === null ||
+      birthDay.startDate === "" ||
+      birthDay.endDate === null ||
+      birthDay.endDate === ""
+    ) {
+      isproceed = false;
+    }
+
+    if (!isproceed) {
+      Swal.fire({
+        title: "An error occur!",
+        text: errormessage,
+        icon: "error",
+      });
+    }
+
+    return isproceed;
+  };
+
+  const handleCreateUser = (e) => {
+    let id = userID;
+    let fullName = firstName + " " + lastName;
+    e.preventDefault();
+    let regobj = {
+      id,
+      fullName,
+      phoneNum,
+      birthDay,
+      nationality,
+      gender,
+    };
+    if (IsValidate()) {
+      // console.log(regobj);
+      axios({
+        method: "POST",
+        url: "http://localhost:3000/user",
+        data: JSON.stringify(regobj),
+      })
+        .then(() => {
+          Swal.fire({
+            title: "Successfully!",
+            text: "New user has been created!",
+            icon: "success",
+          }).then((response) => {
+            if (response.isConfirmed) {
+              Navigate("/users-list");
+            }
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "An error occur!",
+            text: "Failed :" + err.message,
+            icon: "error",
+          });
+        });
+    }
+  };
   return (
     <>
       <div className="animate__animated animate__zoomIn flex h-screen items-center justify-center text-white ">
@@ -32,27 +135,32 @@ const CreateUser = () => {
             <h1 className="text-4xl font-normal">Create User</h1>
             <p>Create new information. 🛑</p>
           </div>
-          <form className="mt-5 flex flex-col gap-5">
+          <form
+            className="mt-5 flex flex-col gap-5"
+            onSubmit={handleCreateUser}
+          >
             <div className="flex gap-x-4">
               <div className="grow">
                 <InputForm
-                  title="ID"
-                  placeholder="Automatic Generate ID"
-                  type="disabled"
-                  disabled
+                  title="First Name"
+                  placeholder="Enter your first name"
+                  type="text"
+                  value={firstName}
+                  onChange={setFirstName}
+                  isDisabled={false}
                 />
               </div>
               <div className="grow">
                 <InputForm
-                  title="Full Name"
-                  placeholder="Edit your full name"
+                  title="Last Name"
+                  placeholder="Enter your last name"
                   type="text"
-                  // value={email}
-                  // onChange={setEmail}
+                  value={lastName}
+                  onChange={setLastName}
+                  isDisabled={false}
                 />
               </div>
             </div>
-
             <div className="flex gap-x-4">
               <div className="grow">
                 <label
@@ -66,7 +174,7 @@ const CreateUser = () => {
                   containerClassName="relative max-w-xl"
                   asSingle={true}
                   primaryColor={"fuchsia"}
-                  value={value}
+                  value={birthDay}
                   onChange={handleValueChange}
                   displayFormat={"DD/MM/YYYY"}
                   showShortcuts={true}
@@ -77,8 +185,9 @@ const CreateUser = () => {
                   title="Phone Number"
                   placeholder="Type your phone number"
                   type="number"
-                  //value={userPhoneNum}
-                  //onChange={setUserPhoneNum}
+                  value={phoneNum}
+                  onChange={setPhoneNum}
+                  isDisabled={false}
                 />
               </div>
             </div>
@@ -89,8 +198,8 @@ const CreateUser = () => {
                   id="selectNationality"
                   title="Nationality"
                   options={NationalityOptions}
-                  //value={gender}
-                  //onChange={(e) => setGender(e.target.value)}
+                  value={nationality}
+                  onChange={(e) => setNationality(e.target.value)}
                 />
               </div>
               <div className="grow">
@@ -98,8 +207,8 @@ const CreateUser = () => {
                   id="selectIDType"
                   title="ID Type"
                   options={GenderOptions}
-                  //value={gender}
-                  //onChange={(e) => setGender(e.target.value)}
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                 />
               </div>
             </div>
