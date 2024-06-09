@@ -34,7 +34,6 @@ const CreateUser = () => {
   const GenderOptions = ["None", "Male", "Female"];
 
   const handleValueChange = (newValue) => {
-    console.log("newValue:", newValue);
     setBirthDay(newValue);
   };
 
@@ -90,11 +89,12 @@ const CreateUser = () => {
 
   const handleCreateUser = (e) => {
     let id = userID;
-    let fullName = firstName + " " + lastName;
     e.preventDefault();
     let regobj = {
       id,
-      fullName,
+      firstName,
+      lastName,
+      fullName: firstName + " " + lastName,
       phoneNum,
       birthDay,
       nationality,

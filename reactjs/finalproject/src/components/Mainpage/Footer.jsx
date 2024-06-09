@@ -20,9 +20,9 @@ const Footer = () => {
               Cras incident lobotids feudist makes viramas sagittas eu valuta.
             </span>
             <div className="flex gap-3">
-              <FaFacebookF className="h-10 w-10 border-4 border-slate-800 p-2" />
-              <FaTwitter className="h-10 w-10 border-4 border-slate-800 p-2" />
-              <FaLinkedin className="h-10 w-10 border-4 border-slate-800 p-2" />
+              <FaFacebookF className="h-10 w-10 cursor-pointer border-4 border-slate-800 p-2" />
+              <FaTwitter className="h-10 w-10 cursor-pointer border-4 border-slate-800 p-2" />
+              <FaLinkedin className="h-10 w-10 cursor-pointer border-4 border-slate-800 p-2" />
             </div>
           </div>
           <div className="mt-5 lg:mt-0">
