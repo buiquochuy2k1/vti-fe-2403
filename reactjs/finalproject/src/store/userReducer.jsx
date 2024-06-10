@@ -1,11 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getUserList = createAsyncThunk("user/getUserList", async () => {
-  const response = await axios.get("http://localhost:3000/user");
-  console.log("Response", response);
-  return response.data;
-});
+export const getUserList = createAsyncThunk(
+  "user/getUserList",
+  async (sortItem) => {
+    const url = sortItem
+      ? `http://localhost:3000/user?_sort=${sortItem}&_order=asc`
+      : "http://localhost:3000/user";
+
+    const response = await axios.get(url);
+    // console.log("Response:", response.data);
+    return response.data;
+  },
+);
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async (id) => {
   const response = await axios.delete(`http://localhost:3000/user/${id}`);

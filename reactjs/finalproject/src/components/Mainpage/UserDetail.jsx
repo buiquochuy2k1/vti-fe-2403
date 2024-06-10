@@ -32,7 +32,9 @@ const UserDetail = () => {
     "Thailand",
     "Vietnam",
   ];
-  const GenderOptions = ["None", "Male", "Female"];
+
+  const GenderOptions = ["None", "Male", "Female", "Other"];
+
   // END OF OPTIONS FOR CHOOSE
 
   const [userDetail, setUserDetail] = useState();

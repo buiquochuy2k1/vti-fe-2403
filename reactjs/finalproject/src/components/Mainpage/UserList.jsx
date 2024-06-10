@@ -12,8 +12,8 @@ const UserList = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    dispatch(getUserList()); // Gọi action lấy danh sách user
-  }, []);
+    dispatch(getUserList());
+  }, [dispatch]);
 
   const handleDeleteUser = (id) => () => {
     Swal.fire({
@@ -48,7 +48,7 @@ const UserList = () => {
 
   const filteredUsers = userList?.filter((user) => {
     const fullName = user.fullName.toLowerCase();
-    const searchLower = searchQuery.toLowerCase();
+    const searchLower = searchQuery.toLowerCase().trim();
     return (
       fullName.includes(searchLower) ||
       user.phoneNum.includes(searchLower) ||
@@ -81,6 +81,24 @@ const UserList = () => {
   };
 
   // END OF PAGINATION AND SEARCH SETTINGS
+
+  //SORT SETTING
+  const [sortState, setSortState] = useState(false);
+
+  const handleSort = (typeToSort) => {
+    console.log("Sort State: ", sortState);
+    setSortState((prevSortState) => {
+      const newSortState = !prevSortState;
+      dispatch(
+        getUserList(
+          newSortState ? typeToSort : undefined,
+          newSortState ? "asc" : undefined,
+        ),
+      );
+      return newSortState;
+    });
+  };
+  //END OF SORT SETTING
   return (
     <>
       <div className="animate__animated animate__fadeIn relative overflow-x-auto bg-gray-800 shadow-md sm:rounded-lg">
@@ -146,7 +164,11 @@ const UserList = () => {
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   Full Name
-                  <a href="#">
+                  <button
+                    onClick={() => {
+                      handleSort("fullName");
+                    }}
+                  >
                     <svg
                       className="ms-1.5 h-3 w-3"
                       aria-hidden="true"
@@ -156,29 +178,20 @@ const UserList = () => {
                     >
                       <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3">
-                <div className="flex items-center">
-                  Date of Birth
-                  <a href="#">
-                    <svg
-                      className="ms-1.5 h-3 w-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                    </svg>
-                  </a>
-                </div>
+                <div className="flex items-center">Date of Birth</div>
               </th>
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   Nationality
-                  <a href="#">
+                  <button
+                    onClick={() => {
+                      handleSort("nationality");
+                    }}
+                  >
                     <svg
                       className="ms-1.5 h-3 w-3"
                       aria-hidden="true"
@@ -188,13 +201,17 @@ const UserList = () => {
                     >
                       <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   Phone Number
-                  <a href="#">
+                  <button
+                    onClick={() => {
+                      handleSort("phoneNum");
+                    }}
+                  >
                     <svg
                       className="ms-1.5 h-3 w-3"
                       aria-hidden="true"
@@ -204,7 +221,7 @@ const UserList = () => {
                     >
                       <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                     </svg>
-                  </a>
+                  </button>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3">
@@ -213,37 +230,48 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {currentItems?.map((user) => (
-              <tr
-                key={user.id}
-                className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-              >
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+            {currentItems && currentItems.length > 0 ? (
+              currentItems.map((user) => (
+                <tr
+                  key={user.id}
+                  className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
-                  {user.id}
-                </th>
-                <td className="px-6 py-4">{user.fullName}</td>
-                <td className="px-6 py-4">{user.birthDay.endDate}</td>
-                <td className="px-6 py-4">{user.nationality}</td>
-                <td className="px-6 py-4">{user.phoneNum}</td>
-                <td className="px-6 py-4">
-                  <Link
-                    to={`/user/${user.id}`}
-                    className="mr-2 font-medium text-blue-600 hover:underline dark:text-blue-500"
+                  <th
+                    scope="row"
+                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
                   >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={handleDeleteUser(user.id)}
-                    className="font-medium text-red-600 hover:underline dark:text-red-500"
-                  >
-                    Delete
-                  </button>
+                    {user.id}
+                  </th>
+                  <td className="px-6 py-4">{user.fullName}</td>
+                  <td className="px-6 py-4">{user.birthDay.endDate}</td>
+                  <td className="px-6 py-4">{user.nationality}</td>
+                  <td className="px-6 py-4">{user.phoneNum}</td>
+                  <td className="px-6 py-4">
+                    <Link
+                      to={`/user/${user.id}`}
+                      className="mr-2 font-medium text-blue-600 hover:underline dark:text-blue-500"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => handleDeleteUser(user.id)}
+                      className="font-medium text-red-600 hover:underline dark:text-red-500"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="6"
+                  className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+                >
+                  No data available
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
 
@@ -254,28 +282,33 @@ const UserList = () => {
           <span className="mb-4 block w-full text-sm font-normal text-gray-500 md:mb-0 md:inline md:w-auto dark:text-gray-400">
             Showing{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
-              {indexOfFirstItem + 1}
+              {currentPage}
             </span>{" "}
             of{" "}
             <span className="font-semibold text-gray-900 dark:text-white">
-              {userList?.length}
+              {numbersPage}
             </span>{" "}
-            users
+            pages
           </span>
           <ul className="inline-flex h-8 -space-x-px text-sm rtl:space-x-reverse">
             <li>
-              <a
+              <button
                 onClick={prevPage}
                 className="ms-0 flex h-8 cursor-pointer items-center justify-center rounded-s-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 Previous
-              </a>
+              </button>
             </li>
             {numbers.map((number, index) => (
               <li key={index}>
                 <a
                   onClick={() => changeToClickPage(number)}
-                  className="flex h-8 cursor-pointer items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white "
+                  className={`flex h-8 cursor-pointer items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                    currentPage === number
+                      ? "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white"
+                      : ""
+                  }`}
+                  aria-current={currentPage === number ? "page" : undefined}
                 >
                   {number}
                 </a>

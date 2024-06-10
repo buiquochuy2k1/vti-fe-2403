@@ -24,6 +24,9 @@ const SignupPage = () => {
     endDate: null,
   });
 
+  const [checkbox1Checked, setCheckbox1Checked] = useState(false);
+  const [checkbox2Checked, setCheckbox2Checked] = useState(false);
+
   // END OF USER REGISTER
 
   const GenderOptions = ["None", "Male", "Female", "Other"];
@@ -74,6 +77,15 @@ const SignupPage = () => {
     if (confirmPassword !== password) {
       isproceed = false;
       errormessage = "Password and Confirm Password not match";
+    }
+
+    if (!checkbox1Checked || !checkbox2Checked) {
+      Swal.fire({
+        title: "An error occur!",
+        text: "Please confirm your agreement",
+        icon: "error",
+      });
+      return;
     }
 
     if (!isproceed) {
@@ -260,7 +272,8 @@ const SignupPage = () => {
                 <input
                   id="checkbox-1"
                   type="checkbox"
-                  value=""
+                  value={checkbox1Checked}
+                  onChange={() => setCheckbox1Checked(!checkbox1Checked)}
                   className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
                 />
                 <label
@@ -282,7 +295,8 @@ const SignupPage = () => {
                 <input
                   id="checkbox-2"
                   type="checkbox"
-                  value=""
+                  value={checkbox2Checked}
+                  onChange={() => setCheckbox2Checked(!checkbox2Checked)}
                   className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
                 />
                 <label

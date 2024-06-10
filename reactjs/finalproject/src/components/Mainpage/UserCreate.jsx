@@ -31,7 +31,7 @@ const CreateUser = () => {
     "Thailand",
     "Vietnam",
   ];
-  const GenderOptions = ["None", "Male", "Female"];
+  const GenderOptions = ["None", "Male", "Female", "Other"];
 
   const handleValueChange = (newValue) => {
     setBirthDay(newValue);
